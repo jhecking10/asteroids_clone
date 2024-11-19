@@ -1,8 +1,10 @@
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from circleshape import CircleShape
 
 def main():
     pygame.init()
@@ -33,6 +35,11 @@ def main():
             
         for object in updatables:
             object.update(delta_time)
+
+        for asteroid in asteroids:
+            if player.check_collision(asteroid):
+                print("Game over!")
+                sys.exit()
 
         screen.fill("black")
 
